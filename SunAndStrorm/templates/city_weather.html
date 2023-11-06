@@ -1,0 +1,31 @@
+{% load static %}
+{% if weather_data %}
+    <div class="gridr">
+        <div class="curr_card">
+            <h1>{{ weather_data.city }}</h1>
+            <h2>{{ weather_data.temperature }}°C</h2>
+            <p>Humidity: {{ weather_data.humidity }} % <br>
+                Pressure: {{ weather_data.pressure }} hPa <br>
+                Wind: {{ weather_data.wind }} km/h
+            </p>
+            <p>{{ weather_data.description }}</p>
+            <img src="http://openweathermap.org/img/w/{{ weather_data.icon }}.png" alt="{{ weather_data.description }}">
+        </div>
+    </div>
+{% endif %}
+
+{% if daily_forecasts %}
+    <h2 class="label2"> 5-Day Forecast</h2>
+    <div class="forecast-container">
+        {% for forecast in daily_forecasts %}
+            <div class="forecast">
+                <h3>{{ forecast.day }}</h3>
+                <p>{{ forecast.min_temp }}°C - {{ forecast.max_temp }}°C</p>
+                <p>{{ forecast.description }}</p>
+                <img src="http://openweathermap.org/img/w/{{ forecast.icon }}.png" alt="{{ forecast.description }}">
+                <p>Date & Time:<br>
+                    {{forecast.date}}<br>{{forecast.time}}</p>
+            </div>
+        {% endfor %}
+    </div>
+{% endif %}

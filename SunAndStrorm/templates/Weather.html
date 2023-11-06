@@ -1,0 +1,64 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
+</head>
+<body>
+    <div class="home">
+        <div class="box" id="head">
+            <header class="header"><img src="{% static 'img/Cloud.svg' %}"/>
+                 Weather<span class="text-gradient">io</span>
+            </header>
+        </div>
+        <div class="box" id="lpart">
+            <left class="left">
+                <div class="labeltop"><img src="{% static 'img/searchicon.svg' %}">      Get your Local Weather details on one click</div>
+                <div class="gradient"></div>
+                <div class="checkyourforecast">
+                     Check Your
+                    <div class='weather text-gradient'> Weather</div>
+                     Forecast
+                    <p class="discription"> Welcome to Weatherio, your one-stop source for  accurate and up-to-date weather information.
+                         We're here to keep you informed about the latest  weather conditions, forecasts, and more.</p>
+                </div>
+            </left>
+        </div>
+        <div class="box" id="rpart">
+            <div class="gradient2"></div>
+            <div class="gradient3"></div>
+            <right class="right"><img src="{% static 'img/Group 481779.svg' %}"/></right>
+        </div>
+        
+        <div class="box" id="bottom">
+            <div class="stats">
+                <p >5 days <span class="text-gradient">FORECASTING </span></p>|
+                <p class="text-gradient" style="font-weight: 600;"> CURRENT WEATHER DATA </p>|
+                <p > 230M+ <span class="text-gradient">USERS</span></p>
+            </div>
+        </div>
+    </div>
+
+    <div class="container2">
+        <form method="post" class="formbox">
+          {% csrf_token %}
+          <input type="text" name="city1" placeholder="Enter city..">
+          <button type="submit">Get Weather</button>
+        </form>
+    </div>
+
+    {% if weather_data1 %}
+        <div class="city-container">
+        {% include 'city_weather.html' with weather_data=weather_data1 daily_forecasts=daily_forecasts1 %}
+        </div>
+    {% endif %}
+</body>
+
+
+
+</html>
+
