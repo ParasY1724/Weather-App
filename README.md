@@ -25,3 +25,5 @@ Technologies Used:
 -DJANGO: For interactive features and making API requests.
 
 -OpenWeather API: To fetch weather data. (https://openweathermap.org/api)
+
+FIGMA LINK:https://www.figma.com/file/3XZK8RrBo1ACi0qkxkpwDe/Weatherio?type=design&node-id=0%3A1&mode=design&t=JPpw84VfRHa43t43-1
