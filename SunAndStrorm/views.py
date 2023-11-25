@@ -40,10 +40,13 @@ def fetch_weather_and_forecast(city, api_key, current_weather_url, forecast_url)
         'icon': response['weather'][0]['icon'],
     }
 
+    temp_day=""
     daily_forecasts = []
-    for daily_data in forecast_response['list'][:5]:
-        daily_forecasts.append({
-            'day': datetime.datetime.fromtimestamp(daily_data['dt']).strftime('%A'),
+    for daily_data in forecast_response['list'][:]:
+        if (temp_day != datetime.datetime.fromtimestamp(daily_data['dt']).strftime('%A')):
+            temp_day=datetime.datetime.fromtimestamp(daily_data['dt']).strftime('%A')
+            daily_forecasts.append({
+            'day': temp_day,
             'min_temp': round(daily_data['main']['temp_min'] - 273.15, 2),
             'max_temp': round(daily_data['main']['temp_max'] - 273.15, 2),
             'description': daily_data['weather'][0]['description'],
@@ -51,5 +54,8 @@ def fetch_weather_and_forecast(city, api_key, current_weather_url, forecast_url)
             'time': ((daily_data['dt_txt']).split())[1],
             'icon': daily_data['weather'][0]['icon'],
         })
+        if (len(daily_forecasts)==5) :
+            break; 
+        
 
     return weather_data, daily_forecasts
